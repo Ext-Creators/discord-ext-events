@@ -1,4 +1,3 @@
 Changelog
 =========
 
-.. Insert changelog here.

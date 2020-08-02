@@ -1,21 +1,20 @@
-discord-ext-*
-=============
+discord-ext-events
+==================
 
-Badges go up here.
+|dependencies| |license|
 
-This line is the repository description again.
+Custom events derived from events dispatched by Discord. 
 
-Then repository specific information goes down here.
-
+    ⚠️ Work In Progress!
 
 Installation
 ------------
 
-Note whether extension is on PyPI here.
+This extension is currently not in PyPI.
 
 .. code-block:: sh
 
-    # how to install should go here.
+    $ python3 -m pip install -U git+https://github.com/Ext-Creators/discord-ext-events
 
 
 Usage
@@ -23,4 +22,7 @@ Usage
 
 .. code-block:: py
 
-    # Usage examples should go here.
+    # Work In Progress
+
+.. |dependencies| image:: https://img.shields.io/librariesio/github/Ext-Creators/discord-ext-events
+.. |license| image:: https://img.shields.io/pypi/l/discord-ext-events.svg
