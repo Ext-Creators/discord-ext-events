@@ -1,7 +1,8 @@
 import asyncio
 import datetime
 
-from typing import Optional
+from functools import wraps
+from typing import Callable, Optional
 
 import discord
 
@@ -55,3 +56,24 @@ async def fetch_recent_audit_log_entry(client: discord.Client, guild: discord.Gu
         return await fetch_recent_audit_log_entry(client, guild, target=target, action=action, retry=retry - 1)
 
     return None
+
+
+def listens_for(*events: str) -> Callable:
+    """Helper decorator which defines which events an event check is listening for.
+
+    Parameters
+    ----------
+    *events: :class:`str`
+        The names of the events to listen for.
+    """
+
+    def decorator(func: Callable) -> Callable:
+
+        @wraps(func)
+        async def wrapper(client, event, *args, **kwargs):
+            if event in events:
+                await func(client, *args, **kwargs)
+
+        return wrapper
+
+    return decorator
