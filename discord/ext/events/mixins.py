@@ -8,4 +8,4 @@ class EventsMixin(discord.Client):
 
     def dispatch(self, event, *args, **kwargs):
         super().dispatch(event, *args, **kwargs)  # type: ignore
-        self.dispatcher.handle(self, event, *args, **kwargs)  # type: ignore
+        self.dispatcher.handle(self, event, *args, **kwargs)
