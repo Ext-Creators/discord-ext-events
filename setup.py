@@ -17,7 +17,7 @@ setup(
     python_requires=">=3.5.3",
     url="https://github.com/Ext-Creators/discord-ext-events",
     version=version,
-    packages=["discord.ext.events"],
+    packages=["discord.ext.events", "discord.ext.events.custom_events"],
     license="Apache Software License",
     description="Custom events derived from events dispatched by Discord. ",
     long_description=readme,

@@ -17,6 +17,7 @@
 from collections import namedtuple
 
 from .mixins import EventsMixin
+from .dispatcher import CustomEventDispatcher
 from . import utils
 
 

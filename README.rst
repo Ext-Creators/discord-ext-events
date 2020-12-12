@@ -26,10 +26,13 @@ An example for when subscribing to the on_member_kick event.
 
     import discord
     from discord.ext import commands, events
-    from discord.ext.events import member_kick
+    from discord.ext.events import EventsMixin, CustomEventDispatcher
 
 
     class MyBot(commands.Bot, events.EventsMixin):
+        dispatcher = CustomEventDispatcher([
+            'member_kick',
+        ])
 
         async def on_ready(self):
             print('Logged in!')

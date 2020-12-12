@@ -1,16 +1,11 @@
-import asyncio
-
 import discord
 
-from ._events import _ALL
+from .dispatcher import CustomEventDispatcher
 
 
 class EventsMixin(discord.Client):
-
-    async def on__event(self, event, *args, **kwargs):
-        for event_name, event_check in _ALL.items():
-            asyncio.ensure_future(event_check(self, event, *args, **kwargs))
+    dispatcher = CustomEventDispatcher()
 
     def dispatch(self, event, *args, **kwargs):
         super().dispatch(event, *args, **kwargs)  # type: ignore
-        super().dispatch('_event', event, *args, **kwargs)
+        self.dispatcher.handle(self, event, *args, **kwargs)

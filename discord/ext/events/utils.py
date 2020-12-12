@@ -1,10 +1,11 @@
 import asyncio
 import datetime
-
 from functools import wraps
 from typing import Callable, Optional
 
 import discord
+
+from .custom_events import _ALL
 
 
 SLEEP_FOR = 2.5
@@ -68,11 +69,17 @@ def listens_for(*events: str) -> Callable:
     """
 
     def decorator(func: Callable) -> Callable:
+        event_name = func.__name__[6:]
+        _ALL[event_name] = func
 
         @wraps(func)
         async def wrapper(client, event, *args, **kwargs):
             if event in events:
-                await func(client, *args, **kwargs)
+                result = await func(client, *args, **kwargs)
+                if result is not None:
+                    if not isinstance(result, tuple):
+                        result = (result,)
+                    client.dispatch(event_name, *result)
 
         return wrapper
 
