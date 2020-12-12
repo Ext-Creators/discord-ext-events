@@ -2,7 +2,6 @@ import discord
 
 from ..utils import fetch_recent_audit_log_entry, listens_for
 
-EVENT_NAME = 'member_kick'
 
 @listens_for('member_remove')
 async def check_member_kick(client: discord.Client, member: discord.Member):
@@ -15,6 +14,4 @@ async def check_member_kick(client: discord.Client, member: discord.Member):
     if entry is None:
         return
 
-    client.dispatch(EVENT_NAME, member, entry)
-
-EVENT_CALLABLE = check_member_kick
+    return member, entry
