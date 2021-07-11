@@ -44,7 +44,7 @@ async def fetch_recent_audit_log_entry(client: discord.Client, guild: discord.Gu
     """
     async for entry in guild.audit_logs(limit=1, action=action):
 
-        delta = datetime.datetime.utcnow() - entry.created_at
+        delta = discord.utils.utcnow() - entry.created_at
         if delta < datetime.timedelta(seconds=10):
             if target is not None and entry.target != target:
                 continue
